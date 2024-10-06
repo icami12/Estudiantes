@@ -13,10 +13,15 @@ class Estudiante(models.Model):
     edad = models.PositiveIntegerField()
     nota_curso = models.DecimalField (max_digits=5, decimal_places = 2)
     curso_alumn = models.ForeignKey (Curso, on_delete = models.CASCADE)
-        
-    def obtenerNombreCompleto(self):
+       
+    def __str__(self):
+        return f'{self.nombre} {self.apellido}'
+     
+    def obtenerRegCompleto(self):
         if self.nombre and self.apellido:
             nombre_completo = f'{self.nombre}, {self.apellido}'
-            return nombre_completo.strip()
+            return f'nombre={nombre_completo.strip()}, edad={self.edad}, nota={self.nota_curso}, curso={self.curso_alumn.nombre}'
         else:
-            return 'Nombre completo no disponible'
+            return 'Informacion del estudiante incompleta'
+    obtenerRegCompleto.short_description='registro'
+    

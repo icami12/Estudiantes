@@ -4,5 +4,5 @@ from gestor_estudiantes.estudiante import views
 app_name= 'estudiante'
 
 urlpatterns = [
-    path('',views.lista_estudiantes, name='lista_estudiantes')
+    path('estudiantes/',views.lista_estudiantes, name='lista_estudiantes')
 ]

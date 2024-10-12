@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 from gestor_estudiantes.estudiante.models import Curso, Estudiante
 
 def lista_estudiantes(request):
@@ -18,6 +18,15 @@ def lista_estudiantes(request):
         else:
             lista_estud.append({'error':'Registro alumno incompleto'})
     return render(request, 'estudiante/lista_estudiantes.html',{'estudiantes':lista_estud})
+
+def lista_estudMayoresAEdad(request,pk):
+    estudiantes = Estudiante.objects.filter(edad__gt=pk)
+    
+    return render(request, 'estudiante/estudiantesMayoresAUnaEdad.html',{'estudiantes':estudiantes})
+
+def info_curso(request, pk):
+    curso = get_object_or_404(Curso, id=pk)
+    return render(request, 'estudiante/buscarCurso.html',{'curso':curso})
             
     
     
